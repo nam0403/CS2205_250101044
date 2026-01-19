@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InternVL Poster (Compact Layout)</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome (CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #1f2937;
+        }
+
+        .poster-container {
+            width: 100%;
+            max-width: 1400px;
+            aspect-ratio: 1 / 1.414;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            padding: 1.5rem; /* Reduced padding from 2rem */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-box {
+            background: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1rem; /* Reduced padding from 1.25rem */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .section-title {
+            color: #1e40af;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.75rem; /* Reduced margin */
+            font-weight: 900;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+
+        .highlight-text {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .figure-container {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0.75rem; /* Reduced margin */
+        }
+        
+        .figure-container img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 4px;
+            background-color: #f8fafc;
+        }
+        
+        .figure-caption {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        .method-step {
+            background-color: #eff6ff;
+            border-left: 5px solid #3b82f6;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem; /* Reduced margin */
+            border-radius: 0 8px 8px 0;
+            flex-shrink: 0;
+        }
+        
+        .method-step h4 {
+            font-size: 1rem;
+        }
+        .method-step p {
+            font-size: 0.85rem;
+        }
+
+        /* Middle column specific adjustments */
+        .middle-col {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem; /* Reduced gap from 1.5rem to 1rem */
+        }
+
+        @media print {
+            body { background: none; -webkit-print-color-adjust: exact; }
+            .poster-container { margin: 0; width: 100%; max-width: none; box-shadow: none; padding: 0.5in; }
+            .section-box { border: 2px solid #ccc; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-container" id="poster">
+        <!-- HEADER -->
+        <header class="text-center border-b-8 border-blue-900 pb-6 mb-6">
+            <h1 class="text-6xl font-black text-blue-900 mb-3 uppercase tracking-tight leading-none">
+                InternVL: Scaling up Vision Foundation Models <br> <span class="text-blue-600">and Aligning for Generic Visual-Linguistic Tasks</span>
+            </h1>
+            <div class="flex justify-center items-center gap-8 mt-4">
+                <div class="text-xl text-gray-800 font-bold">
+                    Zhe Chen<sup>1</sup>, Jiannan Wu<sup>1</sup>, Wenhai Wang<sup>1</sup>, Weijie Su<sup>1</sup>, Guo Chen<sup>1</sup>, et al.
+                </div>
+            </div>
+            <p class="text-xl text-gray-600 italic mt-1 font-medium">
+                <sup>1</sup>OpenGVLab, Shanghai AI Laboratory &nbsp;|&nbsp; ArXiv: 2312.14238
+            </p>
+            <div class="flex justify-center gap-6 mt-4">
+                <span class="bg-blue-600 text-white px-6 py-2 rounded-full text-lg font-bold shadow-lg">CVPR 2024 Oral</span>
+                <span class="bg-green-600 text-white px-6 py-2 rounded-full text-lg font-bold shadow-lg">
+                    <i class="fab fa-github mr-2"></i> Open Source
+                </span>
+            </div>
+        </header>
+
+        <!-- MAIN GRID CONTENT -->
+        <!-- Reduced gap from gap-8 to gap-4 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow">
+            
+            <!-- LEFT COLUMN -->
+            <div class="flex flex-col gap-4">
+                <!-- Abstract / Motivation -->
+                <div class="section-box">
+                    <h2 class="section-title"><i class="fas fa-lightbulb"></i> Motivation</h2>
+                    <p class="text-justify mb-4 text-lg leading-relaxed">
+                        There is a significant <span class="highlight-text">parameter scale gap</span> between Large Language Models (LLMs) and Vision Foundation Models.
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2 text-base text-gray-700">
+                        <li><strong>LLMs:</strong> Typically scaled to <span class="font-bold">100B+</span> parameters.</li>
+                        <li><strong>Vision Models:</strong> Stagnated at <span class="font-bold">~1B-3B</span> parameters.</li>
+                        <li>This disparity hinders the development of true Multi-modal AGI systems.</li>
+                    </ul>
+                    <div class="mt-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500 shadow-sm">
+                        <span class="font-bold text-red-700 text-lg">Goal:</span> To bridge this gap by scaling up the vision encoder to <span class="font-bold">6B parameters</span> and progressively aligning it with LLMs.
+                    </div>
+                </div>
+
+                <!-- Architecture -->
+                <div class="section-box flex-grow">
+                    <h2 class="section-title"><i class="fas fa-network-wired"></i> Architecture</h2>
+                    <div class="space-y-4 mb-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <h3 class="font-bold text-blue-900 text-lg">1. InternViT-6B</h3>
+                            <p class="text-gray-700">The largest open-source Vision Transformer (ViT) to date (6 billion parameters).</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <h3 class="font-bold text-green-900 text-lg">2. QLLaMA Bridge</h3>
+                            <p class="text-gray-700">A multi-modal alignment component based on Llama, connecting the vision encoder with the LLM.</p>
+                        </div>
+                    </div>
+
+                    <!-- Figure 1 -->
+                    <div class="figure-container mt-auto">
+                        <img src="./model.png" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/f1f5f9/1e40af?text=Figure+1:+Architecture';" 
+                             alt="InternVL Architecture Diagram">
+                        <p class="figure-caption">Figure 1: Overall Architecture of InternVL.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MIDDLE COLUMN (MODIFIED LAYOUT) -->
+            <div class="middle-col">
+                
+                <!-- 1. Alignment Strategy (Enlarged: flex-[2]) -->
+                <div class="section-box flex-[2]">
+                    <h2 class="section-title"><i class="fas fa-layer-group"></i> Alignment Strategy</h2>
+                    
+                    <!-- Strategy Image Container -->
+                    <div class="figure-container">
+                        <img src="./training.png" 
+                             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/OpenGVLab/InternVL@main/assets/arch.png';" 
+                             alt="Progressive Alignment Strategy">
+                        <p class="figure-caption">Figure 2: The 3-stage Progressive Alignment Strategy.</p>
+                    </div>
+
+                    <p class="mb-2 text-sm font-semibold text-gray-600">Training Process:</p>
+                    
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div class="method-step">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-blue-900">Stage 1: Contrastive Training</h4>
+                                <span class="text-[10px] font-bold bg-blue-200 text-blue-800 px-2 py-1 rounded">Vision-Language</span>
+                            </div>
+                            <p class="text-gray-700">Trained on massive noisy image-text pairs. Aligns InternViT with a text encoder.</p>
+                        </div>
+
+                        <div class="method-step">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-blue-900">Stage 2: Generative Training</h4>
+                                <span class="text-[10px] font-bold bg-blue-200 text-blue-800 px-2 py-1 rounded">V-L-LLM</span>
+                            </div>
+                            <p class="text-gray-700">Connects to QLLaMA. Focuses on high-quality data for captioning and grounding.</p>
+                        </div>
+
+                        <div class="method-step">
+                            <div class="flex justify-between items-center mb-1">
+                                <h4 class="font-bold text-blue-900">Stage 3: Supervised Fine-tuning</h4>
+                                <span class="text-[10px] font-bold bg-blue-200 text-blue-800 px-2 py-1 rounded">SFT</span>
+                            </div>
+                            <p class="text-gray-700">Fine-tuning on diverse datasets for state-of-the-art performance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Performance (Reduced: flex-[1]) -->
+                <div class="section-box flex-1">
+                    <h2 class="section-title"><i class="fas fa-chart-line"></i> Performance</h2>
+                    
+                    <div class="flex flex-col h-full justify-between">
+                        <p class="text-sm mb-2">Outperforming ViT-22B, BEiT-3, PALM-E.</p>
+                        
+                        <!-- Figure 3 (Smaller) -->
+                        <div class="figure-container border-0 p-0 bg-transparent flex-grow justify-center">
+                            <img src="./result.png" 
+                                 style="max-height: 180px;"
+                                 onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/OpenGVLab/InternVL@main/assets/radar.png';" 
+                                 alt="Performance Radar Chart">
+                            <p class="figure-caption mt-1">Figure 3: Performance Comparison.</p>
+                        </div>
+
+                        <div class="mt-2 grid grid-cols-2 gap-2">
+                            <div class="bg-gray-100 p-2 rounded text-center">
+                                <div class="font-bold text-xl text-blue-700">32</div>
+                                <div class="text-[10px] uppercase font-bold text-gray-500">SOTA Benchmarks</div>
+                            </div>
+                            <div class="bg-gray-100 p-2 rounded text-center">
+                                <div class="font-bold text-xl text-blue-700">Top-1</div>
+                                <div class="text-[10px] uppercase font-bold text-gray-500">Classification</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="flex flex-col gap-4">
+                <!-- Results Detail -->
+                <div class="section-box">
+                    <h2 class="section-title"><i class="fas fa-trophy"></i> Key Results</h2>
+                    <ul class="space-y-4">
+                        <li class="bg-blue-50 p-4 rounded-lg">
+                            <span class="block font-bold text-blue-900 border-b border-blue-200 pb-1 mb-2">Visual Perception</span>
+                            <p class="text-sm text-gray-700">InternViT-6B achieves <span class="font-bold">90.1%</span> Top-1 accuracy on ImageNet-1K, surpassing previous SOTA vision encoders.</p>
+                        </li>
+                        <li class="bg-blue-50 p-4 rounded-lg">
+                            <span class="block font-bold text-blue-900 border-b border-blue-200 pb-1 mb-2">Multi-modal Tasks</span>
+                            <p class="text-sm text-gray-700">Excellent performance on captioning, VQA, and retrieval tasks.</p>
+                        </li>
+                        <li class="bg-blue-50 p-4 rounded-lg">
+                            <span class="block font-bold text-blue-900 border-b border-blue-200 pb-1 mb-2">Flexibility</span>
+                            <p class="text-sm text-gray-700">Can be used as a standalone vision encoder or integrated into LLMs to boost capabilities.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Conclusion -->
+                <div class="section-box">
+                    <h2 class="section-title"><i class="fas fa-check-circle"></i> Conclusion</h2>
+                    <div class="text-gray-800 space-y-3">
+                        <p><i class="fas fa-angle-right text-blue-500 font-bold"></i> <strong>Bridging the Gap:</strong> InternVL successfully scales vision models to 6B parameters.</p>
+                        <p><i class="fas fa-angle-right text-blue-500 font-bold"></i> <strong>Versatile Foundation:</strong> A powerful visual encoder for Multi-modal systems.</p>
+                        <p><i class="fas fa-angle-right text-blue-500 font-bold"></i> <strong>Open Source:</strong> Weights and code are fully available.</p>
+                    </div>
+                </div>
+
+                <!-- QR / References -->
+                <div class="section-box bg-gradient-to-br from-blue-900 to-blue-800 text-white flex flex-col justify-center items-center text-center mt-auto">
+                    <div class="bg-white p-2 rounded-lg mb-4">
+                         <!-- Placeholder QR for local version -->
+                        <div class="w-32 h-32 bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
+                            <i class="fas fa-qrcode text-4xl"></i>
+                        </div>
+                    </div>
+                    <p class="font-black text-2xl tracking-widest">SCAN ME</p>
+                    <p class="text-sm text-blue-200 mt-2 font-mono">github.com/OpenGVLab/InternVL</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
